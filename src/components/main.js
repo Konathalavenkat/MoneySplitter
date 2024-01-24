@@ -11,19 +11,25 @@ function Main() {
         setshowmoneyinput(true)
         console.log(N);
     }
+    const changefromChild=()=>{
+        setshowmoneyinput(!showmoneyinput)
+        document.getElementById('numinput').style.display='block';
+    }
     const getchilddata=(arr,names)=>{
         setArr(arr);
         setNames(names);
     }
     return (
         <>
-                <div id='numinput'>
-                    <input type="number" id='num' class="bg-dark-700 py-2" placeholder="Enter No. of friends"></input>
-                <button className="text-bold text-white bg-green-700 rounded py-2 px-3 hover:bg-green-500" onClick={fixn}>
-                    S3t
-                </button>
+                <div id='numinput' className='w-full flex justify-center'>
+                    <div className='flex justify-center'>
+                        <input type="number" id='num' class="bg-dark-700 rounded py-2 px-auto" placeholder="Enter No. of friends"></input>
+                        <button className="text-bold text-white bg-green-700 rounded py-2 px-3 hover:bg-green-500 " onClick={fixn}>
+                        Go!
+                        </button>
+                    </div>
                 </div>
-                {showmoneyinput && <Ex n={N}/>}
+                {showmoneyinput && <Ex changefromChild={changefromChild} n={N}/>}
 
         </>
     )
