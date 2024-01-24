@@ -7,8 +7,11 @@ function Main() {
     const [showmoneyinput,setshowmoneyinput]=useState(false);
     const fixn=()=>{
         setN(Number(document.getElementById('num').value));
-        document.getElementById('numinput').style.display='none';
-        setshowmoneyinput(true)
+        if(N>=2){setshowmoneyinput(true);document.getElementById('numinput').style.display='none';}
+        else{
+            document.getElementById('alert').style.color='red';
+            document.getElementById('alert').innerHTML="input should be greater than 2";
+        }
         console.log(N);
     }
     const changefromChild=()=>{
@@ -21,13 +24,15 @@ function Main() {
     }
     return (
         <>
-                <div id='numinput' className='w-full flex justify-center'>
+                <div id='numinput' className='w-full flex flex-col justify-center'>
                     <div className='flex justify-center'>
                         <input type="number" id='num' class="bg-dark-700 rounded py-2 px-auto" placeholder="Enter No. of friends"></input>
                         <button className="text-bold text-white bg-green-700 rounded py-2 px-3 hover:bg-green-500 " onClick={fixn}>
                         Go!
                         </button>
+                        <br/>
                     </div>
+                    <span id='alert' className='text-center align-middle'></span>
                 </div>
                 {showmoneyinput && <Ex changefromChild={changefromChild} n={N}/>}
 
